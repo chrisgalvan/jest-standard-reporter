@@ -1,0 +1,41 @@
+{
+  "name": "jest-standard-reporter",
+  "version": "1.0.0",
+  "description": "Jest reporter that uses stdout for messages and stderr for errors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Galvan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisgalvan/jest-standard-reporter"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisgalvan/jest-standard-reporter/issues"
+  },
+  "keywords": [
+    "jest",
+    "jest-reporter"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "husky": "^1.3.1",
+    "prettier": "1.16.4",
+    "pretty-quick": "^1.10.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "jest-util": "^24.0.0",
+    "path": "^0.12.7",
+    "slash": "^2.0.0",
+    "string-length": "^2.0.0"
+  }
+}
