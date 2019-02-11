@@ -1,6 +1,6 @@
 # Jest Standard Reporter
 
-Jest reporter that uses stdout for messages and stderr for errors
+Jest reporter that uses `stdout` for messages and `stderr` for errors
 
 ## Installation
 
@@ -36,7 +36,7 @@ Supports the following Jest configurations
 
 Jest uses `stderr` to print the results of the tests (as opposed to `stdout` [see issue #5064](https://github.com/facebook/jest/issues/5064)), many CI tools mark any output coming from `stderr` as a failure making builds to fail even when the tests pass (false positive).
 
-This reporter uses stdout to print messages an only uses stderr when an error is presented.
+This reporter uses `stdout` to print messages an only uses `stderr` when an error is thrown.
 
 If you chose to, you could override this behavior using `useStderr` flag.
 
