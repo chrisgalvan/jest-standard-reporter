@@ -1,3 +1,6 @@
+![npm](https://img.shields.io/npm/v/jest-standard-reporter.svg)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/jest-standard-reporter.svg)
+
 # Jest Standard Reporter
 
 Jest reporter that uses `stdout` for messages and `stderr` for errors
