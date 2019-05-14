@@ -32,8 +32,8 @@ Supports the following Jest configurations
 
 | Option    | Supported | Info                                    |
 | --------- | --------- | --------------------------------------- |
-| useStderr | :check:   | https://jestjs.io/docs/en/cli#usestderr |
-| verbose   | :check:   | https://jestjs.io/docs/en/cli#verbose   |
+| useStderr | ✅        | https://jestjs.io/docs/en/cli#usestderr |
+| verbose   | ✅        | https://jestjs.io/docs/en/cli#verbose   |
 
 ## Inspiration
 
