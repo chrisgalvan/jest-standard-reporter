@@ -36,6 +36,6 @@
     "jest-util": "^24.0.0",
     "path": "^0.12.7",
     "slash": "^2.0.0",
-    "string-length": "^2.0.0"
+    "string-length": "^3.0.0"
   }
 }
