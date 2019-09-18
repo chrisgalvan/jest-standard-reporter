@@ -1,5 +1,8 @@
-![npm](https://img.shields.io/npm/v/jest-standard-reporter.svg)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/jest-standard-reporter.svg)
+![npm](https://img.shields.io/npm/v/jest-standard-reporter.svg?style=flat-square)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/jest-standard-reporter.svg?style=flat-square)
+![downloads](https://img.shields.io/npm/dm/jest-standard-reporter.svg?style=flat-square)
+![mit](https://img.shields.io/github/license/chrisgalvan/jest-standard-reporter?style=flat-square)
+![keywords](https://img.shields.io/github/package-json/keywords/chrisgalvan/jest-standard-reporter?style=flat-square)
 
 # Jest Standard Reporter
 
