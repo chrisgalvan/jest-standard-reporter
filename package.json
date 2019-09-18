@@ -1,6 +1,6 @@
 {
   "name": "jest-standard-reporter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Jest reporter that uses stdout for messages and stderr for errors",
   "main": "index.js",
   "scripts": {
