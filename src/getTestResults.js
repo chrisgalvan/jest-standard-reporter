@@ -41,11 +41,11 @@ const someTestsRan = (suite) => {
 }
 
 const atLeastOneTestRan = (suite) => {
-  if (someTestsRan(suite)) {
-    return true
+  if (suite.__atLeastOneTestRan === undefined) {
+    suite.__atLeastOneTestRan = someTestsRan(suite)
+      || !!suite.suites.find(atLeastOneTestRan)
   }
-  const one = !!suite.suites.find(atLeastOneTestRan)
-  return one
+  return suite.__atLeastOneTestRan
 }
 
 const getLogSuite = (suite, indentLevel) => {
