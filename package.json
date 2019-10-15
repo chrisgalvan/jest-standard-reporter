@@ -1,6 +1,6 @@
 {
-  "name": "jest-standard-reporter",
-  "version": "1.0.2",
+  "name": "@outlinerisk/jest-friendly-reporter",
+  "version": "0.1.0",
   "description": "Jest reporter that uses stdout for messages and stderr for errors",
   "main": "index.js",
   "scripts": {
@@ -10,10 +10,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisgalvan/jest-standard-reporter"
+    "url": "https://github.com/outline-insurance/jest-friendly-reporter"
   },
   "bugs": {
-    "url": "https://github.com/chrisgalvan/jest-standard-reporter/issues"
+    "url": "https://github.com/outline-insurance/jest-friendly-reporter"
   },
   "keywords": [
     "jest",
