@@ -31,7 +31,28 @@ const groupTestsBySuites = testResults => {
   return output;
 };
 
+const someTestsRan = (suite) => {
+  if (!suite.tests) {
+    return false
+  }
+  return suite.tests.find((test) => {
+    return test.status != 'pending'
+  })
+}
+
+const atLeastOneTestRan = (suite) => {
+  if (someTestsRan(suite)) {
+    return true
+  }
+  const one = !!suite.suites.find(atLeastOneTestRan)
+  return one
+}
+
 const getLogSuite = (suite, indentLevel) => {
+  if (!atLeastOneTestRan(suite)) {
+    return getLine(chalk.dim(`○ ${suite.title}`), indentLevel)
+  }
+
   let output = '';
 
   if (suite.title) {
