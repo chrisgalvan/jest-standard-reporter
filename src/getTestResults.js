@@ -31,7 +31,28 @@ const groupTestsBySuites = testResults => {
   return output;
 };
 
+const someTestsRan = (suite) => {
+  if (!suite.tests) {
+    return false
+  }
+  return suite.tests.find((test) => {
+    return test.status != 'pending'
+  })
+}
+
+const atLeastOneTestRan = (suite) => {
+  if (suite.__atLeastOneTestRan === undefined) {
+    suite.__atLeastOneTestRan = someTestsRan(suite)
+      || !!suite.suites.find(atLeastOneTestRan)
+  }
+  return suite.__atLeastOneTestRan
+}
+
 const getLogSuite = (suite, indentLevel) => {
+  if (!atLeastOneTestRan(suite)) {
+    return getLine(chalk.dim(`○ ${suite.title}`), indentLevel)
+  }
+
   let output = '';
 
   if (suite.title) {
