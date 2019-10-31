@@ -8,80 +8,87 @@ class Stdlib {
     this.bufferedOutput = new Set();
     this.wrapStdio(process.stdout);
     this.wrapStdio(process.stderr);
-  }
 
-  log(message) {
-    if (this.useStderr) {
-      this.err(`${message}\n`);
-    } else {
-      this.out(`${message}\n`);
-    }
+    this.log = log.bind(this)
+    this.error = error.bind(this)
+    this.clear = clear.bind(this)
+    this.close = close.bind(this)
+    this.forceFlushBufferedOutput = forceFlushBufferedOutput.bind(this)
+    this.wrapStdio = wrapStdio.bind(this)
   }
+}
 
-  error(message) {
+log(message) {
+  if (this.useStderr) {
     this.err(`${message}\n`);
+  } else {
+    this.out(`${message}\n`);
   }
+}
 
-  clear() {
-    clearLine(process.stdout);
-    clearLine(process.stderr);
+error(message) {
+  this.err(`${message}\n`);
+}
+
+clear() {
+  clearLine(process.stdout);
+  clearLine(process.stderr);
+}
+
+close() {
+  this.forceFlushBufferedOutput();
+  process.stdout.write = this.out;
+  process.stderr.write = this.err;
+}
+
+// Don't wait for the debounced call and flush all output immediately.
+forceFlushBufferedOutput() {
+  for (const flushBufferedOutput of this.bufferedOutput) {
+    flushBufferedOutput();
   }
+}
 
-  close() {
-    this.forceFlushBufferedOutput();
-    process.stdout.write = this.out;
-    process.stderr.write = this.err;
-  }
+wrapStdio(stream) {
+  const originalWrite = stream.write;
 
-  // Don't wait for the debounced call and flush all output immediately.
-  forceFlushBufferedOutput() {
-    for (const flushBufferedOutput of this.bufferedOutput) {
-      flushBufferedOutput();
+  let buffer = [];
+  let timeout = null;
+
+  const flushBufferedOutput = () => {
+    const string = buffer.join('');
+    buffer = [];
+
+    if (string) {
+      originalWrite.call(stream, string);
     }
-  }
 
-  wrapStdio(stream) {
-    const originalWrite = stream.write;
+    this.bufferedOutput.delete(flushBufferedOutput);
+  };
 
-    let buffer = [];
-    let timeout = null;
+  this.bufferedOutput.add(flushBufferedOutput);
 
-    const flushBufferedOutput = () => {
-      const string = buffer.join('');
-      buffer = [];
-
-      if (string) {
-        originalWrite.call(stream, string);
+  const debouncedFlush = () => {
+    // If the process blows up no errors would be printed.
+    // There should be a smart way to buffer stderr, but for now
+    // we just won't buffer it.
+    if (stream === process.stderr || stream === process.stdout) {
+      flushBufferedOutput();
+    } else {
+      if (!timeout) {
+        timeout = setTimeout(() => {
+          flushBufferedOutput();
+          timeout = null;
+        }, 100);
       }
+    }
+  };
 
-      this.bufferedOutput.delete(flushBufferedOutput);
-    };
+  stream.write = chunk => {
+    buffer.push(chunk);
+    debouncedFlush();
 
-    this.bufferedOutput.add(flushBufferedOutput);
-
-    const debouncedFlush = () => {
-      // If the process blows up no errors would be printed.
-      // There should be a smart way to buffer stderr, but for now
-      // we just won't buffer it.
-      if (stream === process.stderr || stream === process.stdout) {
-        flushBufferedOutput();
-      } else {
-        if (!timeout) {
-          timeout = setTimeout(() => {
-            flushBufferedOutput();
-            timeout = null;
-          }, 100);
-        }
-      }
-    };
-
-    stream.write = chunk => {
-      buffer.push(chunk);
-      debouncedFlush();
-
-      return true;
-    };
-  }
+    return true;
+  };
 }
 
 module.exports = Stdlib;
