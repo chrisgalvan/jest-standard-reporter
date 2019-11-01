@@ -6,15 +6,14 @@ class Stdlib {
     this.err = process.stderr.write.bind(process.stderr);
     this.useStderr = globalConfig.useStderr;
     this.bufferedOutput = new Set();
-    this.wrapStdio(process.stdout);
-    this.wrapStdio(process.stderr);
-
     this.log = log.bind(this);
     this.error = error.bind(this);
     this.clear = clear.bind(this);
     this.close = close.bind(this);
     this.forceFlushBufferedOutput = forceFlushBufferedOutput.bind(this);
     this.wrapStdio = wrapStdio.bind(this);
+    this.wrapStdio(process.stdout);
+    this.wrapStdio(process.stderr);
   }
 }
 
