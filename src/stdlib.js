@@ -9,16 +9,16 @@ class Stdlib {
     this.wrapStdio(process.stdout);
     this.wrapStdio(process.stderr);
 
-    this.log = log.bind(this)
-    this.error = error.bind(this)
-    this.clear = clear.bind(this)
-    this.close = close.bind(this)
-    this.forceFlushBufferedOutput = forceFlushBufferedOutput.bind(this)
-    this.wrapStdio = wrapStdio.bind(this)
+    this.log = log.bind(this);
+    this.error = error.bind(this);
+    this.clear = clear.bind(this);
+    this.close = close.bind(this);
+    this.forceFlushBufferedOutput = forceFlushBufferedOutput.bind(this);
+    this.wrapStdio = wrapStdio.bind(this);
   }
 }
 
-log(message) {
+function log(message) {
   if (this.useStderr) {
     this.err(`${message}\n`);
   } else {
@@ -26,29 +26,29 @@ log(message) {
   }
 }
 
-error(message) {
+function error(message) {
   this.err(`${message}\n`);
 }
 
-clear() {
+function clear() {
   clearLine(process.stdout);
   clearLine(process.stderr);
 }
 
-close() {
+function close() {
   this.forceFlushBufferedOutput();
   process.stdout.write = this.out;
   process.stderr.write = this.err;
 }
 
 // Don't wait for the debounced call and flush all output immediately.
-forceFlushBufferedOutput() {
+function forceFlushBufferedOutput() {
   for (const flushBufferedOutput of this.bufferedOutput) {
     flushBufferedOutput();
   }
 }
 
-wrapStdio(stream) {
+function wrapStdio(stream) {
   const originalWrite = stream.write;
 
   let buffer = [];
