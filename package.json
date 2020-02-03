@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "chalk": "^3.0.0",
-    "jest-util": "^24.0.0",
+    "jest-util": "^25.0.0",
     "path": "^0.12.7",
     "slash": "^3.0.0",
     "string-length": "^3.0.0"
