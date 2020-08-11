@@ -4,9 +4,11 @@ const printDisplayName = config => {
   const { displayName } = config;
 
   if (displayName) {
+    const nameToUse = typeof displayName.name === 'string' ? displayName.name : displayName;
+
     return chalk.supportsColor
-      ? chalk.reset.inverse.white(` ${displayName} `)
-      : displayName;
+      ? chalk.reset.inverse.white(` ${nameToUse} `)
+      : nameToUse;
   }
 
   return '';
