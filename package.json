@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@jest/console": "^25.5.0",
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "jest-util": "^25.0.0",
     "path": "^0.12.7",
     "slash": "^3.0.0",
