@@ -7,7 +7,7 @@ const printDisplayName = (config) => {
     return '';
   }
 
-  const nameToUse =
+  const name =
     typeof displayName.name === 'string' ? displayName.name : displayName;
   const chosenColor =
     typeof displayName.color === 'string' ? displayName.color : 'white';
@@ -16,7 +16,7 @@ const printDisplayName = (config) => {
     ? chalk.reset.inverse[chosenColor]
     : chalk.reset.inverse.white;
 
-  return chalk.supportsColor ? chalkPrint(` ${nameToUse} `) : nameToUse;
+  return chalk.supportsColor ? chalkPrint(` ${name} `) : name;
 };
 
 module.exports = printDisplayName;
