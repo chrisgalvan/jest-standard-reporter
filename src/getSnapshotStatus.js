@@ -48,7 +48,7 @@ const getSnapshotStatus = (snapshot, afterUpdate) => {
       );
     }
 
-    snapshot.uncheckedKeys.forEach(key => {
+    snapshot.uncheckedKeys.forEach((key) => {
       statuses.push(`  ${DOT}${key}`);
     });
   }

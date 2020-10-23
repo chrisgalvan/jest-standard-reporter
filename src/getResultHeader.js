@@ -33,7 +33,7 @@ const getResultHeader = (result, globalConfig, projectConfig) => {
   }
 
   if (result.memoryUsage) {
-    const toMB = bytes => Math.floor(bytes / 1024 / 1024);
+    const toMB = (bytes) => Math.floor(bytes / 1024 / 1024);
     testDetail.push(`${toMB(result.memoryUsage)} MB heap size`);
   }
 

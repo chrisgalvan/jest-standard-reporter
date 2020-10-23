@@ -75,7 +75,7 @@ class Stdlib {
       }
     };
 
-    stream.write = chunk => {
+    stream.write = (chunk) => {
       buffer.push(chunk);
       debouncedFlush();
 
