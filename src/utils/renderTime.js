@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const { formatTime } = require('jest-util');
 
 const PROGRESS_BAR_WIDTH = 40;
 
@@ -6,11 +7,13 @@ const renderTime = (runTime, estimatedTime, width) => {
   // If we are more than one second over the estimated time, highlight it.
   const renderedTime =
     estimatedTime && runTime >= estimatedTime + 1
-      ? chalk.bold.yellow(`${runTime}s`)
-      : `${runTime}s`;
+      ? chalk.bold.yellow(formatTime(runTime, 0))
+      : formatTime(runTime, 0);
+
   let time = `${chalk.bold('Time:')}        ${renderedTime}`;
+
   if (runTime < estimatedTime) {
-    time += `, estimated ${estimatedTime}s`;
+    time += `, estimated ${formatTime(estimatedTime, 0)}`;
   }
 
   // Only show a progress bar if the test run is actually going to take
@@ -21,6 +24,7 @@ const renderTime = (runTime, estimatedTime, width) => {
       Math.floor((runTime / estimatedTime) * availableWidth),
       availableWidth
     );
+
     if (availableWidth >= 2) {
       time += `\n${chalk.green('█').repeat(length)}${chalk
         .white('█')
