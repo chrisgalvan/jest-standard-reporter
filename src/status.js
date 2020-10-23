@@ -3,7 +3,7 @@ const stringLength = require('string-length');
 const {
   trimAndFormatPath,
   wrapAnsiString,
-  printDisplayName
+  printDisplayName,
 } = require('./utils');
 
 const RUNNING_TEXT = ' RUNS ';
@@ -31,7 +31,7 @@ class CurrentTestList {
 
   delete(testPath) {
     const record = this._array.find(
-      record => record && record.testPath === testPath
+      (record) => record && record.testPath === testPath
     );
     this._array[this._array.indexOf(record || null)] = null;
   }
@@ -103,7 +103,7 @@ class Status {
     // $FlowFixMe
     const width = process.stdout.columns;
     let content = '\n';
-    this._currentTests.get().forEach(record => {
+    this._currentTests.get().forEach((record) => {
       if (record) {
         const { config, testPath } = record;
 
