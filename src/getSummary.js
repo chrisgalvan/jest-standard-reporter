@@ -1,5 +1,6 @@
 const chalk = require('chalk');
-const { pluralize, renderTime } = require('./utils');
+const { pluralize } = require('jest-util');
+const { renderTime } = require('./utils');
 
 const getSummary = (aggregatedResults, options) => {
   let runTime = (Date.now() - aggregatedResults.startTime) / 1000;
@@ -29,25 +30,26 @@ const getSummary = (aggregatedResults, options) => {
   const testsTotal = aggregatedResults.numTotalTests;
   const width = (options && options.width) || 0;
 
-  const suites = `${chalk.bold('Test Suites: ') +
+  const suites = `${
+    chalk.bold('Test Suites: ') +
     (suitesFailed ? `${chalk.bold.red(`${suitesFailed} failed`)}, ` : '') +
     (suitesPending
       ? `${chalk.bold.yellow(`${suitesPending} skipped`)}, `
       : '') +
     (suitesPassed ? `${chalk.bold.green(`${suitesPassed} passed`)}, ` : '') +
-    (suitesRun !== suitesTotal
-      ? `${suitesRun} of ${suitesTotal}`
-      : suitesTotal)} total`;
+    (suitesRun !== suitesTotal ? `${suitesRun} of ${suitesTotal}` : suitesTotal)
+  } total`;
 
-  const tests = `${chalk.bold('Tests:       ') +
+  const tests = `${
+    chalk.bold('Tests:       ') +
     (testsFailed ? `${chalk.bold.red(`${testsFailed} failed`)}, ` : '') +
     (testsPending ? `${chalk.bold.yellow(`${testsPending} skipped`)}, ` : '') +
     (testsTodo ? `${chalk.bold.magenta(`${testsTodo} todo`)}, ` : '') +
-    (testsPassed
-      ? `${chalk.bold.green(`${testsPassed} passed`)}, `
-      : '')}${testsTotal} total`;
+    (testsPassed ? `${chalk.bold.green(`${testsPassed} passed`)}, ` : '')
+  }${testsTotal} total`;
 
-  const snapshots = `${chalk.bold('Snapshots:   ') +
+  const snapshots = `${
+    chalk.bold('Snapshots:   ') +
     (snapshotsFailed
       ? `${chalk.bold.red(`${snapshotsFailed} failed`)}, `
       : '') +
@@ -75,7 +77,8 @@ const getSummary = (aggregatedResults, options) => {
       : '') +
     (snapshotsPassed
       ? `${chalk.bold.green(`${snapshotsPassed} passed`)}, `
-      : '')}${snapshotsTotal} total`;
+      : '')
+  }${snapshotsTotal} total`;
 
   const time = renderTime(runTime, estimatedTime, width);
 

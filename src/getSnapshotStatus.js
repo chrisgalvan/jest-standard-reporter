@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { pluralize } = require('./utils');
+const { pluralize } = require('jest-util');
 
 const ARROW = ' \u203A ';
 const DOT = ' \u2022 ';
