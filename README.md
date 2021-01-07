@@ -6,7 +6,7 @@
 
 # Jest Standard Reporter
 
-[Jest](https://jestjs.io/) [reporter](https://jestjs.io/docs/en/configuration#reporters-array-modulename-modulename-options)
+[Jest](https://jestjs.io/) [reporter](https://jestjs.io/docs/en/configuration#reporters-arraymodulename--modulename-options)
 that uses `stdout` for messages and `stderr` for errors.
 
 ## Installation
