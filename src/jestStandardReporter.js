@@ -75,7 +75,7 @@ class StandardReporter {
         testResult.snapshot,
         didUpdate
       );
-      snapshotStatuses.forEach(this.stdlib.log);
+      snapshotStatuses.forEach(this.stdlib.log.bind(this.stdlib));
     }
     this.stdlib.forceFlushBufferedOutput();
   }

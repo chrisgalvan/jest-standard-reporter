@@ -6,17 +6,19 @@
 
 # Jest Standard Reporter
 
-[Jest](https://jestjs.io/) [reporter](https://jestjs.io/docs/en/configuration#reporters-array-modulename-modulename-options)
+[Jest](https://jestjs.io/) [reporter](https://jestjs.io/docs/en/configuration#reporters-arraymodulename--modulename-options)
 that uses `stdout` for messages and `stderr` for errors.
 
 ## Installation
 
 Using [npm](https://www.npmjs.com/):
+
 ```sh
 npm install --save-dev jest-standard-reporter
 ```
 
 Using [yarn](https://yarnpkg.com/):
+
 ```sh
 yarn add --dev jest-standard-reporter
 ```
@@ -24,14 +26,16 @@ yarn add --dev jest-standard-reporter
 ## Usage
 
 Jest CLI:
+
 ```sh
 jest --reporters=jest-standard-reporter
 ```
 
 Jest config:
+
 ```json
 {
-    "reporters": ["jest-standard-reporter"]
+  "reporters": ["jest-standard-reporter"]
 }
 ```
 

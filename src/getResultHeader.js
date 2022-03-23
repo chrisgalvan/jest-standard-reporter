@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { getConsoleOutput } = require('jest-util');
+const { getConsoleOutput } = require('@jest/console');
 const { formatTestPath, printDisplayName } = require('./utils');
 
 const LONG_TEST_COLOR = chalk.reset.bold.bgRed;
@@ -33,7 +33,7 @@ const getResultHeader = (result, globalConfig, projectConfig) => {
   }
 
   if (result.memoryUsage) {
-    const toMB = bytes => Math.floor(bytes / 1024 / 1024);
+    const toMB = (bytes) => Math.floor(bytes / 1024 / 1024);
     testDetail.push(`${toMB(result.memoryUsage)} MB heap size`);
   }
 
