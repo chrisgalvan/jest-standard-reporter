@@ -44,6 +44,13 @@ class StandardReporter {
    */
   onTestStart(test) {
     this.status.testStarted(test.path, test.context.config);
+    this.stdlib.log(
+      getResultHeader(
+        { testFilePath: test.path },
+        this.globalConfig,
+        test.context.config
+      )
+    );
   }
 
   /**
