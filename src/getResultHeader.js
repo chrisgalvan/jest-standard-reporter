@@ -9,6 +9,7 @@ const TITLE_BULLET = chalk.bold('\u25cf ');
 // middle of error logging
 const FAIL_TEXT = 'FAIL';
 const PASS_TEXT = 'PASS';
+const RUNS_TEXT = 'RUNS';
 
 const FAIL = chalk.supportsColor
   ? chalk.reset.inverse.bold.red(` ${FAIL_TEXT} `)
@@ -18,10 +19,18 @@ const PASS = chalk.supportsColor
   ? chalk.reset.inverse.bold.green(` ${PASS_TEXT} `)
   : PASS_TEXT;
 
+const RUNS = chalk.supportsColor
+  ? chalk.reset.inverse.bold.yellow(` ${RUNS_TEXT} `)
+  : RUNS_TEXT;
+
 const getResultHeader = (result, globalConfig, projectConfig) => {
   const testPath = result.testFilePath;
-  const status =
-    result.numFailingTests > 0 || result.testExecError ? FAIL : PASS;
+  let status = PASS;
+  if (result.numFailingTests > 0 || result.testExecError) {
+    status = FAIL;
+  } else if (result.numFailingTests === undefined) {
+    status = RUNS;
+  }
 
   const runTime = result.perfStats
     ? (result.perfStats.end - result.perfStats.start) / 1000
